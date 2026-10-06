@@ -750,12 +750,8 @@
         background: #f4f7fc;
       }
       .m-foot {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
         padding: 14px 18px 18px;
       }
-      .m-foot a,
       .m-foot button {
         display: flex;
         align-items: center;
@@ -766,32 +762,20 @@
         font: inherit;
         font-size: 14px;
         font-weight: 700;
-        text-decoration: none;
         cursor: pointer;
+        width: 100%;
       }
       .m-ok {
-        border: 1.5px solid #d3dcec;
-        color: var(--navy2);
-        background: transparent;
-      }
-      .m-ok:hover {
-        background: #f1f5fc;
-      }
-      .m-go {
         border: 0;
         color: #fff;
         background: var(--navy);
       }
-      .m-go:hover {
+      .m-ok:hover {
         background: var(--navy2);
       }
-      .m-ok:focus-visible,
-      .m-go:focus-visible {
+      .m-ok:focus-visible {
         outline: none;
         box-shadow: 0 0 0 3px var(--gold);
-      }
-      .m-go .bi {
-        font-size: 13px;
       }
 
       .head {
@@ -1107,9 +1091,6 @@
       </div>
       <div class="m-foot">
         <button class="m-ok" type="button" id="mOk">Mengerti</button>
-        <a class="m-go" id="mGo" href="#" target="_blank" rel="noopener noreferrer">
-          Daftar sekarang<svg class="bi"><use href="#i-chev" /></svg>
-        </a>
       </div>
     </dialog>
 
@@ -1146,7 +1127,8 @@
             "Kirimkan bukti ke DM <b>@jooystudy</b>.",
             "Setelah itu, kamu akan mendapat bonus khusus pengguna kode <code>ALT-WINPTN</code>.",
           ],
-          note: "Jika terdapat kendala, hubungi admin lewat DM pada Platform Instagram/Tiktok/X.",        },
+          note: "Jika terdapat kendala, hubungi admin lewat DM pada Platform Instagram/Tiktok/X.",
+        },
       ];
 
       // ===== LINK BIASA: ganti link (url) di sini. Foto: taruh file di assets/ =====
@@ -1198,7 +1180,6 @@
       const mPromo = document.getElementById("mPromo");
       const mSteps = document.getElementById("mSteps");
       const mNote = document.getElementById("mNote");
-      const mGo = document.getElementById("mGo");
       let lastTrigger = null;
 
       function openHowto(p, trigger) {
@@ -1209,7 +1190,6 @@
           .join("");
         mNote.textContent = p.note || "";
         mNote.style.display = p.note ? "" : "none";
-        mGo.href = p.url;
         modal.showModal();
         document.body.classList.add("lock");
         modal.querySelector(".m-body").scrollTop = 0;
