@@ -70,6 +70,9 @@
           linear-gradient(175deg, var(--navy2), var(--navy) 70%);
         background-attachment: fixed;
       }
+      body.lock {
+        overflow: hidden;
+      }
       img {
         display: block;
         max-width: 100%;
@@ -405,9 +408,14 @@
       }
 
       /* iklan highlight */
+      .promos {
+        display: grid;
+        gap: 28px;
+        margin: 30px 0 26px;
+      }
       .promo {
         position: relative;
-        margin: 30px 0 26px;
+        margin: 0;
         padding: 16px 14px 14px;
         color: var(--ink);
         background: var(--card);
@@ -532,6 +540,40 @@
       .copy .bi {
         font-size: 14px;
       }
+
+      /* tombol cara klaim */
+      .howto {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        width: 100%;
+        margin-top: 10px;
+        padding: 10px;
+        border: 1.5px solid #d3dcec;
+        border-radius: 11px;
+        background: transparent;
+        font: inherit;
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--navy2);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .howto:hover {
+        background: #f1f5fc;
+        border-color: var(--navy2);
+      }
+      .howto:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--gold);
+      }
+      .howto .bi {
+        font-size: 16px;
+      }
+
       .cta {
         display: flex;
         align-items: center;
@@ -563,6 +605,193 @@
       }
       .cta .bi {
         font-size: 14px;
+      }
+
+      /* pop up cara klaim */
+      #howtoModal {
+        width: min(400px, calc(100vw - 32px));
+        max-height: calc(100dvh - 48px);
+        margin: auto;
+        padding: 0;
+        border: 0;
+        border-radius: 18px;
+        overflow: hidden;
+        color: var(--ink);
+        background: var(--card);
+        box-shadow: 0 24px 60px rgba(3, 10, 24, 0.5);
+      }
+      #howtoModal::backdrop {
+        background: rgba(4, 12, 28, 0.66);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+      }
+      #howtoModal[open] {
+        display: flex;
+        flex-direction: column;
+        animation: modalIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      #howtoModal[open]::backdrop {
+        animation: fade 0.28s ease;
+      }
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .m-head {
+        position: relative;
+        padding: 18px 54px 16px 18px;
+        color: #fff;
+        background: linear-gradient(135deg, var(--navy2), var(--navy));
+      }
+      .m-head small {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--gold);
+      }
+      .m-head h3 {
+        margin: 2px 0 0;
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+      }
+      .m-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border: 0;
+        border-radius: 50%;
+        font-size: 16px;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.14);
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .m-close:hover {
+        background: rgba(255, 255, 255, 0.26);
+      }
+      .m-close:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--gold);
+      }
+      .m-body {
+        padding: 16px 18px 6px;
+        overflow-y: auto;
+      }
+      .steps {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        counter-reset: s;
+        display: grid;
+        gap: 14px;
+      }
+      .steps li {
+        position: relative;
+        padding-left: 38px;
+        font-size: 14px;
+        line-height: 1.5;
+        counter-increment: s;
+      }
+      .steps li:before {
+        content: counter(s);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 26px;
+        height: 26px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        font-size: 12.5px;
+        font-weight: 800;
+        color: var(--navy);
+        background: var(--gold);
+      }
+      .steps li b {
+        font-weight: 700;
+      }
+      .steps li code {
+        padding: 1px 7px;
+        border-radius: 6px;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        color: var(--navy2);
+        background: #e8eefb;
+      }
+      .m-note {
+        margin: 16px 0 0;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-size: 12.5px;
+        line-height: 1.45;
+        color: var(--muted);
+        background: #f4f7fc;
+      }
+      .m-foot {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 14px 18px 18px;
+      }
+      .m-foot a,
+      .m-foot button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 11px;
+        border-radius: 11px;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .m-ok {
+        border: 1.5px solid #d3dcec;
+        color: var(--navy2);
+        background: transparent;
+      }
+      .m-ok:hover {
+        background: #f1f5fc;
+      }
+      .m-go {
+        border: 0;
+        color: #fff;
+        background: var(--navy);
+      }
+      .m-go:hover {
+        background: var(--navy2);
+      }
+      .m-ok:focus-visible,
+      .m-go:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--gold);
+      }
+      .m-go .bi {
+        font-size: 13px;
       }
 
       .head {
@@ -799,6 +1028,13 @@
           d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
         />
       </symbol>
+      <symbol id="i-info" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 16 16">
+        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+      </symbol>
     </svg>
 
     <div id="splash" role="button" aria-label="Lewati">
@@ -844,7 +1080,7 @@
         </p>
       </div>
 
-      <section class="promo" id="promo" aria-label="Iklan pilihan"></section>
+      <div class="promos" id="promos" aria-label="Iklan pilihan"></div>
 
       <div class="head">
         <span class="eyebrow">Temukan Kami</span>
@@ -856,17 +1092,62 @@
       <footer>© 2026 <b>Basecamp PTN 2027</b></footer>
     </main>
 
+    <!-- Pop up cara klaim bonus (isinya diisi otomatis dari data promo) -->
+    <dialog id="howtoModal" aria-labelledby="mTitle">
+      <div class="m-head">
+        <small id="mPromo"></small>
+        <h3 id="mTitle">Cara klaim bonus</h3>
+        <button class="m-close" type="button" id="mClose" aria-label="Tutup">
+          <svg class="bi"><use href="#i-close" /></svg>
+        </button>
+      </div>
+      <div class="m-body">
+        <ol class="steps" id="mSteps"></ol>
+        <p class="m-note" id="mNote"></p>
+      </div>
+      <div class="m-foot">
+        <button class="m-ok" type="button" id="mOk">Mengerti</button>
+        <a class="m-go" id="mGo" href="#" target="_blank" rel="noopener noreferrer">
+          Daftar sekarang<svg class="bi"><use href="#i-chev" /></svg>
+        </a>
+      </div>
+    </dialog>
+
     <script>
-      // ===== IKLAN HIGHLIGHT: ganti isi di sini =====
-      const PROMO = {
-        badge: "Promo batch 2",
-        name: "ALT 4.0 Batch 2",
-        desc: "Pakai kode di bawah buat promo khusus.",
-        img: "assets/alter.png",
-        code: "ALT-WINPTN",
-        cta: "Daftar sekarang",
-        url: "https://www.alternatifa.com/",
-      };
+      // ===== IKLAN HIGHLIGHT: tambah / ganti isi di sini =====
+      // steps = langkah cara klaim bonus (boleh pakai <b> dan <code>)
+      // note  = catatan kecil di bawah langkah (kosongkan "" kalau tidak perlu)
+      const PROMOS = [
+        {
+          badge: "Promo batch 2",
+          name: "ALT 4.0 Batch 2",
+          desc: "Pakai kode di bawah buat promo khusus dan klaim bonus.",
+          img: "assets/alter.png",
+          code: "ALT-WINPTN",
+          cta: "Daftar sekarang",
+          url: "https://www.alternatifa.com/",
+          steps: [
+            "Simpan bukti pembelian dengan menggunakan kode <code>ALT-WINPTN</code>.",
+            "Kirimkan bukti ke DM <b>@jooystudy</b>.",
+            "Setelah itu, kamu akan mendapat bonus khusus pengguna kode <code>ALT-WINPTN</code>.",
+          ],
+          note: "Jika terdapat kendala, hubungi admin lewat DM pada Platform Instagram/Tiktok/X.",
+        },
+        {
+          badge: "5X TO TKA GRATIS!!",
+          name: "ALTO TKA 2026",
+          desc: "Pakai kode di bawah buat klaim bonus.",
+          img: "assets/alto.png",
+          code: "ALT-WINPTN",
+          cta: "Daftar sekarang",
+          url: "https://www.alternatifa.com/",
+          steps: [
+            "Simpan bukti pendaftaran dengan menggunakan kode <code>ALT-WINPTN</code>.",
+            "Kirimkan bukti ke DM <b>@jooystudy</b>.",
+            "Setelah itu, kamu akan mendapat bonus khusus pengguna kode <code>ALT-WINPTN</code>.",
+          ],
+          note: "Jika terdapat kendala, hubungi admin lewat DM pada Platform Instagram/Tiktok/X.",        },
+      ];
 
       // ===== LINK BIASA: ganti link (url) di sini. Foto: taruh file di assets/ =====
       const LINKS = [
@@ -912,45 +1193,95 @@
         },
       ];
 
-      // --- render iklan highlight ---
-      const promo = document.getElementById("promo");
-      promo.innerHTML = `
-        <span class="promo-badge"><svg class="bi"><use href="#i-star"/></svg>${PROMO.badge}</span>
-        <div class="promo-top">
-          <div class="promo-img"><img src="${PROMO.img}" alt="${PROMO.name}" onerror="this.style.display='none'"></div>
-          <div class="promo-txt"><b>${PROMO.name}</b><small>${PROMO.desc}</small></div>
-        </div>
-        <div class="code">
-          <div><span>Kode promo</span><strong>${PROMO.code}</strong></div>
-          <button class="copy" type="button" aria-label="Salin kode promo"><svg class="bi"><use href="#i-copy"/></svg><em style="font-style:normal">Salin</em></button>
-        </div>
-        <a class="cta" href="${PROMO.url}" target="_blank" rel="noopener noreferrer">${PROMO.cta}<svg class="bi"><use href="#i-chev"/></svg></a>
-      `;
+      // --- pop up cara klaim bonus ---
+      const modal = document.getElementById("howtoModal");
+      const mPromo = document.getElementById("mPromo");
+      const mSteps = document.getElementById("mSteps");
+      const mNote = document.getElementById("mNote");
+      const mGo = document.getElementById("mGo");
+      let lastTrigger = null;
 
-      const copyBtn = promo.querySelector(".copy");
-      let copyTimer;
-      copyBtn.addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText(PROMO.code);
-        } catch (e) {
-          const t = document.createElement("textarea");
-          t.value = PROMO.code;
-          t.style.position = "fixed";
-          t.style.opacity = "0";
-          document.body.appendChild(t);
-          t.select();
+      function openHowto(p, trigger) {
+        lastTrigger = trigger;
+        mPromo.textContent = p.name;
+        mSteps.innerHTML = (p.steps || [])
+          .map((s) => `<li>${s}</li>`)
+          .join("");
+        mNote.textContent = p.note || "";
+        mNote.style.display = p.note ? "" : "none";
+        mGo.href = p.url;
+        modal.showModal();
+        document.body.classList.add("lock");
+        modal.querySelector(".m-body").scrollTop = 0;
+      }
+
+      modal.addEventListener("close", () => {
+        document.body.classList.remove("lock");
+        if (lastTrigger) lastTrigger.focus();
+      });
+      document.getElementById("mClose").addEventListener("click", () => modal.close());
+      document.getElementById("mOk").addEventListener("click", () => modal.close());
+      // klik di area gelap (luar kotak) menutup pop up
+      modal.addEventListener("click", (e) => {
+        const r = modal.getBoundingClientRect();
+        const inside =
+          e.clientX >= r.left &&
+          e.clientX <= r.right &&
+          e.clientY >= r.top &&
+          e.clientY <= r.bottom;
+        if (!inside) modal.close();
+      });
+
+      // --- render iklan highlight ---
+      const promoBox = document.getElementById("promos");
+
+      PROMOS.forEach((p, i) => {
+        const card = document.createElement("section");
+        card.className = "promo";
+        card.style.animationDelay = i * 0.12 + "s";
+        card.innerHTML = `
+          <span class="promo-badge"><svg class="bi"><use href="#i-star"/></svg>${p.badge}</span>
+          <div class="promo-top">
+            <div class="promo-img"><img src="${p.img}" alt="${p.name}" onerror="this.style.display='none'"></div>
+            <div class="promo-txt"><b>${p.name}</b><small>${p.desc}</small></div>
+          </div>
+          <div class="code">
+            <div><span>Kode promo</span><strong>${p.code}</strong></div>
+            <button class="copy" type="button" aria-label="Salin kode promo ${p.name}"><svg class="bi"><use href="#i-copy"/></svg><em style="font-style:normal">Salin</em></button>
+          </div>
+          <button class="howto" type="button" aria-haspopup="dialog"><svg class="bi"><use href="#i-info"/></svg>Cara klaim bonus</button>
+          <a class="cta" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.cta}<svg class="bi"><use href="#i-chev"/></svg></a>
+        `;
+        promoBox.appendChild(card);
+
+        const howtoBtn = card.querySelector(".howto");
+        howtoBtn.addEventListener("click", () => openHowto(p, howtoBtn));
+
+        const copyBtn = card.querySelector(".copy");
+        let copyTimer;
+        copyBtn.addEventListener("click", async () => {
           try {
-            document.execCommand("copy");
-          } catch (_) {}
-          t.remove();
-        }
-        copyBtn.classList.add("done");
-        copyBtn.innerHTML = `<svg class="bi"><use href="#i-check"/></svg><em style="font-style:normal">Tersalin</em>`;
-        clearTimeout(copyTimer);
-        copyTimer = setTimeout(() => {
-          copyBtn.classList.remove("done");
-          copyBtn.innerHTML = `<svg class="bi"><use href="#i-copy"/></svg><em style="font-style:normal">Salin</em>`;
-        }, 1800);
+            await navigator.clipboard.writeText(p.code);
+          } catch (e) {
+            const t = document.createElement("textarea");
+            t.value = p.code;
+            t.style.position = "fixed";
+            t.style.opacity = "0";
+            document.body.appendChild(t);
+            t.select();
+            try {
+              document.execCommand("copy");
+            } catch (_) {}
+            t.remove();
+          }
+          copyBtn.classList.add("done");
+          copyBtn.innerHTML = `<svg class="bi"><use href="#i-check"/></svg><em style="font-style:normal">Tersalin</em>`;
+          clearTimeout(copyTimer);
+          copyTimer = setTimeout(() => {
+            copyBtn.classList.remove("done");
+            copyBtn.innerHTML = `<svg class="bi"><use href="#i-copy"/></svg><em style="font-style:normal">Salin</em>`;
+          }, 1800);
+        });
       });
 
       // --- render link biasa ---
