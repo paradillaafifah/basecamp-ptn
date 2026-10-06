@@ -1098,6 +1098,7 @@
       // ===== IKLAN HIGHLIGHT: tambah / ganti isi di sini =====
       // steps = langkah cara klaim bonus (boleh pakai <b> dan <code>)
       // note  = catatan kecil di bawah langkah (kosongkan "" kalau tidak perlu)
+      // codeLabel = tulisan di atas kode (opsional, default "Kode promo")
       const PROMOS = [
         {
           badge: "Promo batch 2",
@@ -1117,15 +1118,16 @@
         {
           badge: "5X TO TKA GRATIS!!",
           name: "ALTO TKA 2026",
-          desc: "Pakai kode di bawah buat klaim bonus.",
+          desc: "Pakai kode referal di bawah buat klaim bonus.",
           img: "assets/alto.png",
+          codeLabel: "Kode referal",
           code: "ALT-WINPTN",
           cta: "Daftar sekarang",
           url: "https://www.alternatifa.com/",
           steps: [
-            "Simpan bukti pendaftaran dengan menggunakan kode <code>ALT-WINPTN</code>.",
+            "Simpan bukti pendaftaran dengan menggunakan kode referal <code>ALT-WINPTN</code>.",
             "Kirimkan bukti ke DM <b>@jooystudy</b>.",
-            "Setelah itu, kamu akan mendapat bonus khusus pengguna kode <code>ALT-WINPTN</code>.",
+            "Setelah itu, kamu akan mendapat bonus khusus pengguna kode referal <code>ALT-WINPTN</code>.",
           ],
           note: "Jika terdapat kendala, hubungi admin lewat DM pada Platform Instagram/Tiktok/X.",
         },
@@ -1226,8 +1228,8 @@
             <div class="promo-txt"><b>${p.name}</b><small>${p.desc}</small></div>
           </div>
           <div class="code">
-            <div><span>Kode promo</span><strong>${p.code}</strong></div>
-            <button class="copy" type="button" aria-label="Salin kode promo ${p.name}"><svg class="bi"><use href="#i-copy"/></svg><em style="font-style:normal">Salin</em></button>
+            <div><span>${p.codeLabel || "Kode promo"}</span><strong>${p.code}</strong></div>
+            <button class="copy" type="button" aria-label="Salin ${(p.codeLabel || "Kode promo").toLowerCase()} ${p.name}"><svg class="bi"><use href="#i-copy"/></svg><em style="font-style:normal">Salin</em></button>
           </div>
           <button class="howto" type="button" aria-haspopup="dialog"><svg class="bi"><use href="#i-info"/></svg>Cara klaim bonus</button>
           <a class="cta" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.cta}<svg class="bi"><use href="#i-chev"/></svg></a>
